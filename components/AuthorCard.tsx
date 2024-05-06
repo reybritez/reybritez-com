@@ -39,9 +39,7 @@ const AuthorCard = ({ content }) => {
           <p>
             Hello there! I'm Steven Rey, a self-taught software developer, and open source
             contributor. I'm the lead developer of CDPS (Club Deportivo de Puerto Sajonia), and
-            Owner of <a href="https://bedenkerlabs.com">BedenkerLabs</a>. 
-
-						I am a driven software
+            Owner of <a href="https://bedenkerlabs.com">BedenkerLabs</a>. I am a driven software
             developer specializing in creating bespoke systems that optimize business processes and
             drive profitability for my clients.
           </p>
