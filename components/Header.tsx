@@ -6,10 +6,13 @@ import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 import OpenToWorkBadge from './ui/OpenToWorkBadge'
+import { GoogleTagManager } from '@next/third-parties/google'
+
 
 const Header = () => {
   return (
     <header className="relative flex items-center justify-between px-4 py-10 sm:px-0">
+      <GoogleTagManager gtmId="GTM-TKNMLQJ8" />
       <div className="align-center flex flex-row items-center">
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="flex items-center justify-between">
