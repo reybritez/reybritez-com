@@ -1,14 +1,14 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Steven Rey Britez - Software Engineer',
+  title: 'Steven Rey Britez - Software Engineer & Founder',
   author: 'Steven Rey Britez',
   avatar: '/static/images/avatar.png',
-  occupation: 'Software Engineer',
-  company: 'Club Deportivo Sajonia',
+  occupation: 'Founder & Lead Engineer',
+  company: 'Bedenker Labs',
   headerTitle: 'Steven Rey Britez',
   location: 'Asunción, PY',
-  openToWork: true,
-  description: 'Musings of a self-taught software engineer',
+  openToWork: false,
+  description: 'Self-taught software engineer building and running Bedenker Labs, a software development & consulting group',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://reybritez.com/',

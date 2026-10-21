@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
   description: siteMetadata.description,
   openGraph: {
-    title: 'Resume | Trillium Smith',
+    title: `Resume | ${siteMetadata.author}`,
     description: siteMetadata.title,
     url: './resume',
     siteName: siteMetadata.title,

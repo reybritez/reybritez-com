@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Steven Rey Britez - Resume</title>
+<style>
+  @page { size: Letter; margin: 36px 40px; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Times New Roman", Georgia, serif;
+    color: #111;
+    font-size: 11.5px;
+    line-height: 1.35;
+    margin: 0;
+  }
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    margin: 0 0 4px 0;
+    letter-spacing: 1px;
+  }
+  .contact {
+    text-align: center;
+    font-size: 11px;
+    margin-bottom: 14px;
+  }
+  .contact a { color: #111; text-decoration: underline; }
+  h2 {
+    font-size: 13px;
+    border-bottom: 1.5px solid #111;
+    padding-bottom: 2px;
+    margin: 16px 0 8px 0;
+    letter-spacing: 0.5px;
+  }
+  p { margin: 4px 0; }
+  .proj-box {
+    border: 1px solid #111;
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+  }
+  .proj-title { font-weight: bold; }
+  .proj-title .role { font-style: italic; font-weight: normal; }
+  .proj-desc { font-style: italic; margin: 2px 0 4px 0; }
+  ul { margin: 2px 0 2px 18px; padding: 0; }
+  li { margin-bottom: 2px; }
+  table.exp { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+  table.exp td, table.exp th { border: 1px solid #111; padding: 6px 8px; vertical-align: top; }
+  table.exp .role-cell { font-weight: bold; }
+  table.exp .role-cell em { font-weight: normal; font-style: italic; }
+  table.exp .year-cell { width: 90px; text-align: center; white-space: nowrap; }
+  .bullets { margin: 4px 0 0 0; }
+</style>
+</head>
+<body>
+  <h1>STEVEN REY BRITEZ</h1>
+  <div class="contact">
+    +595(985)-187-623 | Asunción, Paraguay | stevenreybritez@gmail.com |
+    <a href="https://www.linkedin.com/in/steven-rey-britez/">LinkedIn</a> |
+    <a href="https://github.com/reybritez">Github</a>
+  </div>
+
+  <h2>SUMMARY</h2>
+  <p>I'm Steven Rey, a self-taught software developer and open source contributor. I'm the founder of <strong>Bedenker Labs</strong>, a software development &amp; consulting group, where I design, build, and operate full-stack systems for a portfolio of long-term clients.</p>
+  <p>With a keen eye for innovation, I harness the power of technology to deliver solutions that not only save time but also generate tangible value. My passion lies in leveraging my expertise to provide exceptional service, ensuring that each project is tailored to meet the unique needs and goals of my clients.</p>
+
+  <h2>TECHNICAL SKILLS</h2>
+  <p><strong>Development:</strong> design and development of web systems in Django and Python, Next.js and MERN stack using SQL and NoSQL databases, front-end frameworks like Tailwind &amp; Bootstrap, automated deployment pipelines, AI-assisted engineering workflows and tooling, testing and debugging.</p>
+  <p><strong>Operating Systems:</strong> advanced handling of Ubuntu and Windows, installation, configuration and maintenance of computer hardware and software. Continuous use of VPS/cloud infrastructure (DigitalOcean, AWS, Hetzner).</p>
+  <p><strong>Networking:</strong> installation and configuration of LAN, WAN and VLAN networks, security cameras, Mikrotik routers, managed switches and other network devices.</p>
+
+  <h2>TECHNICAL PROJECTS</h2>
+
+  <div class="proj-box">
+    <div class="proj-title">BEDENKER LABS | <span class="role">Founder</span> | https://bedenkerlabs.com/ — 2024–present</div>
+    <div class="proj-desc">My software development &amp; consulting group.</div>
+    <ul>
+      <li>Design, build, and operate full-stack systems (Django/Python, Next.js) for a portfolio of long-term clients.</li>
+      <li>Lead a small team through AI-assisted engineering workflows: automated code review, knowledge-graph-backed codebase navigation, and structured QA/PM processes.</li>
+    </ul>
+  </div>
+
+  <div class="proj-box">
+    <div class="proj-title">MULTI-TENANT SAAS PLATFORM FOR CLINICS | <span class="role">Lead Developer</span> — ongoing</div>
+    <div class="proj-desc">A Django-based multi-tenant SaaS product serving multiple healthcare clinics from a single codebase.</div>
+    <ul>
+      <li>Tenant isolation, scheduling, point-of-sale, and patient management in one platform.</li>
+      <li>Designed and shipped the tenant provisioning and billing/payment flows.</li>
+    </ul>
+  </div>
+
+  <div class="proj-box">
+    <div class="proj-title">CENTRALIZED PAYMENT GATEWAY | <span class="role">Lead Developer</span> — ongoing</div>
+    <div class="proj-desc">A multi-merchant Django service centralizing card payment integrations for several products at once.</div>
+    <ul>
+      <li>One-off charges, recurring subscriptions, and embedded checkout against a single payment provider API, shared across multiple products instead of reimplemented per-project.</li>
+      <li>Full automated test suite and code review pipeline for every change.</li>
+    </ul>
+  </div>
+
+  <div class="proj-box">
+    <div class="proj-title">MULTI-TENANT AI AGENT PLATFORM | <span class="role">Lead Developer</span> — 2026</div>
+    <div class="proj-desc">A platform that provisions and operates isolated AI-driven assistants per tenant.</div>
+    <ul>
+      <li>Operational and customer-facing automation, built on top of OpenClaw, with per-tenant credential isolation and media understanding.</li>
+    </ul>
+  </div>
+
+  <div class="proj-box">
+    <div class="proj-title">ERP MODERNIZATION FOR A MEMBERSHIP ORGANIZATION | <span class="role">Lead Developer</span> — ongoing</div>
+    <div class="proj-desc">Modernization of a large, long-running Django ERP for a membership-based organization.</div>
+    <ul>
+      <li>14+ modules (finance, inventory, HR, access control), legacy system taken over mid-flight.</li>
+      <li>Regular production deploys and bug fixes against a live, in-use system.</li>
+    </ul>
+  </div>
+
+  <div class="proj-box">
+    <div class="proj-title">ESTAS BOLUDECES | <span class="role">Developer</span> | https://estasboludeces.com/ — 2023</div>
+    <div class="proj-desc">An online store checkout with WhatsApp integration.</div>
+    <ul>
+      <li>Next.js development using an open-source project as template.</li>
+      <li>Deployed to a test environment on Vercel with GitHub integration.</li>
+    </ul>
+  </div>
+
+  <h2>PROFESSIONAL EXPERIENCE</h2>
+  <table class="exp">
+    <tr>
+      <td class="role-cell">Founder &amp; Lead Engineer <em>| Bedenker Labs | Asunción, Paraguay</em></td>
+      <td class="year-cell">2024–present</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <ul class="bullets">
+          <li>Founded and run a software development &amp; consulting group serving a portfolio of long-term clients across multi-tenant SaaS, payment integrations, AI-driven automation, and legacy ERP modernization.</li>
+          <li>Lead a small distributed team, coordinating development, QA, and project management workflows with heavy use of AI-assisted engineering tooling (automated code review, knowledge-graph codebase navigation).</li>
+          <li>Design and operate production infrastructure (VPS/cloud, CI-less deploy pipelines, automated backups and monitoring) for every client system under management.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="role-cell">Lead Development Manager &amp; Senior IT <em>| Club Deportivo Sajonia | Asunción, Paraguay</em></td>
+      <td class="year-cell">2019–2024</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <ul class="bullets">
+          <li>Maintained an internal ERP system (intranet) developed in Django/Python managing operational and administrative departments.</li>
+          <li>Resolved tickets involving installation and repair of computer hardware and software systems.</li>
+          <li>Analyzed current IT systems and identified improvements to reduce connection problems.</li>
+          <li>Coordinated the activities of all developers and administrators operating the organization's computer and telecommunications systems.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="role-cell">Programming Coach <em>| Penguin Academy | Asunción, Paraguay</em></td>
+      <td class="year-cell">2022</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <ul class="bullets">
+          <li>Helped students understand computational thinking concepts and perform in the world of programming.</li>
+          <li>Built trusting relationships to help each student find what they were looking for.</li>
+          <li>Improved my own hackathon experience, creating impact-driven solutions with my team.</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+  <h2>EDUCATION</h2>
+  <table class="exp">
+    <tr>
+      <td class="role-cell">Coding Dojo <em>| Full-Stack Developer Certificate | Asunción, Paraguay</em></td>
+      <td class="year-cell">2023</td>
+    </tr>
+    <tr>
+      <td colspan="2">Immersive Full-Stack Training Program in Python, Java, and MERN.</td>
+    </tr>
+    <tr>
+      <td class="role-cell">Autonomous University Of Asunción <em>| Computer Systems Engineer | Asunción, Paraguay</em></td>
+      <td class="year-cell"></td>
+    </tr>
+    <tr>
+      <td class="role-cell">C.N.A.E <em>| IT Technician | Asunción, Paraguay</em></td>
+      <td class="year-cell">2014</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <ul class="bullets">
+          <li>Installed networking equipment, such as routers and switches.</li>
+          <li>Discovered logical structures of data, algorithms and math to solve projects.</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
