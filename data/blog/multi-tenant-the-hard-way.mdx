@@ -1,0 +1,25 @@
+---
+title: Multi-Tenant, the Hard Way
+date: '2026-10-05'
+tags: ['Multi-Tenant', 'SaaS', 'Django']
+draft: false
+summary: Lessons from turning a single-client Django app into a platform that serves many, without rewriting it from scratch.
+---
+
+The easiest way to build multi-tenant software is to design it that way from day one. I didn't have that luxury. What I had was a working Django app built for one client, and a second client who wanted the same thing, and a third one after that.
+
+The tempting shortcut — spin up a fresh copy of the codebase per client — works great for about two clients. By the third one, you're maintaining N copies of the same bugs, and a fix for one client silently never reaches the other two unless someone remembers to port it.
+
+## What actually had to change
+
+**Tenant isolation first, features second.** Before adding anything new, every query in the existing codebase had to be audited for "does this correctly scope to the current tenant, or does it accidentally see everyone's data." This is tedious, unglamorous work, and skipping it is how you end up with a real incident instead of a hypothetical one.
+
+**Credentials per tenant, not shared.** Each tenant needed its own isolated secrets — API keys, payment credentials, whatever external service it talks to — never one shared secret for "the platform." This one bit me indirectly on a different project before I applied the lesson here: a shared credential between consumers of an internal service meant, in theory, one consumer could reach another's data by guessing an ID. Cheap to avoid up front, annoying to retrofit later.
+
+**Provisioning has to be boring.** Standing up a new tenant should be a script, not a checklist a human follows from memory. The day it's 2am and you need to onboard someone urgently, you want "run this command" to be true.
+
+## What I got wrong at first
+
+I underestimated how much of "multi-tenant" is actually about operational discipline rather than clever data-modeling. The schema design took a week. Getting backups, monitoring, and incident response to correctly treat each tenant as its own blast radius took a lot longer, and I'm still refining it.
+
+If you're starting a single-client app that you suspect might become a platform later: it's cheaper to bake in tenant scoping from the start than to retrofit it, even if the retrofit is "only" a few weeks of focused work. Every week it's deferred is a week more surface area for a one-tenant assumption to sneak into new code.

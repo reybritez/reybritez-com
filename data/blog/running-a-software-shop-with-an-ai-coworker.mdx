@@ -1,0 +1,29 @@
+---
+title: Running a Software Shop With an AI Coworker
+date: '2026-08-21'
+tags: ['AI-Engineering', 'Bedenker-Labs']
+draft: false
+summary: What actually changes day-to-day when an AI agent handles a chunk of real engineering work.
+---
+
+I'll admit I was skeptical for a long time. Not about whether AI tools could write code — they clearly can — but about whether they could be trusted with the boring, unglamorous 80% of running client software: deploys, test suites, code review, keeping a dozen small repos from rotting.
+
+That changed once I actually gave an agent real responsibility instead of just autocomplete.
+
+## What it actually does
+
+The honest version, not the pitch version: it reviews diffs before I commit, it runs the test suite and tells me when something's actually broken versus flaky, it investigates "which of my clients' repos is quiet because nothing's needed, versus quiet because something's stuck," and it writes a lot of the first draft of things — migrations, test cases, documentation — that I then read and correct.
+
+It does not get to deploy to production without me watching, and it does not get to touch anything involving money or credentials without that being an explicit, visible step. Those are the two rules that haven't moved.
+
+## The part that surprised me
+
+I expected the time savings to come from *writing* code faster. That part is real but smaller than I thought. The bigger win has been in the stuff I used to just... not do. Checking in on a quiet client every couple of weeks instead of letting them go silent for two months. Actually investigating a vague security assumption instead of noting it and moving on. The agent doesn't get bored of repetitive verification the way I do at 6pm on a Thursday.
+
+## The part that's still hard
+
+Judgment calls that depend on context only I have — what a specific client would actually be okay with, which risk is worth taking for which relationship — still need me. That's fine; that's the job. The useful shift has been reclaiming the parts of the job that were mechanical and routine, so the judgment-call parts get more of my actual attention instead of being squeezed in around busywork.
+
+I don't think "AI will replace developers" is the interesting framing. The more interesting question, for anyone running a small shop like mine, is: which parts of running the business were you doing badly because you were spread too thin, and does giving some of that real responsibility to a tool change that?
+
+For me, the answer so far has been yes, with real caveats, and I'm still figuring out where the next boundary should be.

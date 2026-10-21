@@ -1,0 +1,37 @@
+---
+title: One Payment Gateway, Not Five
+date: '2026-06-02'
+tags: ['Payments', 'Django', 'Architecture']
+draft: false
+summary: Why I stopped wiring card payments into every project separately and built one service instead.
+---
+
+Every time a new project needed to take card payments, the instinct was the same: go read the provider's docs, wire up the auth, handle the callback, write the reversal logic, test it, ship it. Repeat for the next project. By the third time I was doing this, I had three slightly-different, slightly-buggy implementations of the same thing, each in a different codebase, each with its own copy of credentials sitting in a `.env` file.
+
+That's a bad shape for anything that touches money.
+
+## The actual problem
+
+It wasn't that the integration was hard. It was that I was solving it per-project instead of once, which meant:
+
+- Every project had its own copy of the "what does a rejected payment look like" logic, and they drifted apart over time.
+- Credentials lived in N places instead of one, which is N more places for a key to leak.
+- A bug fix in one project's payment code didn't automatically fix the same bug in the other two.
+
+## The fix: a gateway, not a library
+
+Instead of a shared *library* that each project imports (which still means N copies of the running code), I built a small, separate Django service that owns the payment integration entirely. Every project that needs to charge a card talks to this service over HTTPS with a scoped credential, instead of talking to the payment provider directly.
+
+The data model ended up fairly simple:
+
+- **Comercio** — the business identity (who is this for).
+- **ComercioIntegracion** — one business can have several of these, one per payment product (one-off charges, recurring subscriptions, embedded checkout), each with its own encrypted credentials.
+- **ChargeRequest** / **Subscription** — the actual transactions, always scoped to one integration.
+
+One non-obvious constraint shaped a lot of this: one of the systems that needed to use this gateway doesn't have a public HTTPS endpoint — it only lives behind a VPN. Payment providers need a public callback URL to confirm a transaction, so that system genuinely can't receive a push notification the normal way.
+
+The fix was to flip the direction: instead of the gateway pushing a confirmation inward, that system polls the gateway's status endpoint from the inside, using its outbound connection (which works fine) instead of fighting to open an inbound one. During the short window where someone is actively paying, it polls every couple of seconds; the rest of the time it does nothing. Same mechanism for every project using the gateway — no special case for the one with the weird network.
+
+## What I'd tell past me
+
+Build the "many projects share a handful of concerns" services earlier than feels necessary. The pain of a slightly-premature shared service is much smaller than the pain of reconciling three drifted copies of payment logic after the fact — especially once real money is moving through all three.
