@@ -1,0 +1,31 @@
+---
+title: The Database You Didn't Choose
+date: '2026-04-18'
+tags: ['Legacy-Systems', 'Django']
+draft: false
+summary: Notes from maintaining a system where the database predates every developer currently working on it.
+---
+
+Most advice about databases assumes you got to pick one. Mine didn't. I inherited a system where the primary datastore was chosen by someone who left the organization years before I showed up, running on a database engine that most developers my age have never touched outside of legacy work.
+
+You don't get to rewrite your way out of that. The system is in daily use by real people who need it to keep working while you figure out what's actually going on inside it.
+
+## What "legacy" actually means day-to-day
+
+It's not that the technology is bad — a lot of it is genuinely solid, just unfamiliar and sparsely documented. The real cost shows up in smaller ways:
+
+- Tooling you take for granted (migrations, introspection, a decent ORM) either doesn't exist or has rough edges you have to work around.
+- Nobody currently on the team was there for the original design decisions, so "why does it work this way" is often an afternoon of archaeology instead of a Slack message to the person who knows.
+- Every connection to it has to coexist with a modern stack (Postgres, Django) that was never designed with this neighbor in mind.
+
+## What actually helped
+
+**Treat the old system as a read source you respect, not a problem to eliminate.** Trying to migrate everything off it immediately is a great way to introduce new bugs faster than you fix old ones. A thin, well-tested integration layer that reads from it carefully bought far more stability than an ambitious rewrite would have.
+
+**When data looks orphaned, assume it's real until proven otherwise.** I once found a large batch of records with no clean link to the rest of the system — the easy move is writing them off as garbage. They weren't. They were real historical transactions that had lost their relational anchor somewhere along the way, during a migration years earlier. Recovering and re-linking them took real effort, but deleting them would have quietly erased someone's real history.
+
+**Document the "why," not just the "what," as you learn it.** Every piece of tribal knowledge about a legacy system that only lives in one person's head is a future incident. I started writing down not just how a piece of the old system works, but why it was probably built that way, every time I had to dig deep enough to actually figure it out.
+
+## The part I didn't expect
+
+I assumed inheriting legacy infrastructure would mostly be about patience and caution. It is that, but it's also been one of the better crash courses I've had in reading code defensively — assuming nothing, verifying everything, and building the habit of checking the real state of a system instead of trusting what I think it should say.

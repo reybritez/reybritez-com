@@ -1,0 +1,31 @@
+---
+title: Code Review That Never Sleeps
+date: '2026-05-30'
+tags: ['AI-Engineering', 'Code-Review']
+draft: false
+summary: Setting up an AI reviewer that reads every diff before it's committed, and what it's actually caught.
+---
+
+Code review is one of those things everyone agrees is important and almost nobody does consistently when they're a small team spread across several projects. I was no exception — I'd review my own diffs carefully when I remembered to, and skip it entirely when I was in a hurry, which was often exactly when I shouldn't have.
+
+So I set up an AI reviewer that runs as a pre-commit hook, reads the staged diff against a written set of project rules, and blocks the commit if it finds something real. No "LGTM" rubber-stamping — it has to point at a specific line and explain what's wrong.
+
+## What the rules actually look like
+
+The rules live in a plain file in each repo, written the same way I'd explain them to a new hire: no hardcoded secrets, business logic belongs in the service layer not the view, every state-changing operation on money needs to be wrapped in a transaction, typed exceptions instead of catching everything generically. Boring stuff. The kind of stuff that's obvious in the abstract and easy to skip under a deadline.
+
+## What it's actually caught
+
+The interesting cases weren't typos — a linter catches those. The interesting cases were things like:
+
+- A money-adjacent endpoint that validated a shared internal secret but never checked that the record being modified actually belonged to the caller. Nobody had exploited it, but nobody had checked for it either, and it had been sitting there since the feature shipped.
+- A race condition in a "cancel subscription" flow that would double-charge a provider's API if called twice in quick succession, caught before it ever reached a test suite, let alone production.
+- A comment that described behavior the code no longer had — stale documentation that would've sent the next person debugging it in the wrong direction.
+
+None of these were exotic bugs. They were the ordinary kind that happens when you're moving fast and the reviewer is tired, except now the reviewer doesn't get tired.
+
+## Where it's not a replacement
+
+It doesn't understand "is this the right feature to build," or "will this client actually be okay with this tradeoff." Those are still entirely on me. What it's freed up is the part of review that's mechanical but still requires real attention — the part I used to skip when rushed, which is exactly the part most likely to bite later.
+
+I was skeptical this would just be security theater — a check that technically runs but rubber-stamps everything to avoid friction. It's not; it genuinely blocks commits, and I've had to go back and actually fix things more than once. That friction is the point.

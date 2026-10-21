@@ -1,0 +1,29 @@
+---
+title: Boring Infrastructure, On Purpose
+date: '2026-07-14'
+tags: ['Infrastructure', 'Ops']
+draft: false
+summary: Why the least exciting part of running client systems is the part I've invested the most in.
+---
+
+Nobody gets excited about backups until the day they desperately need one. I used to be guilty of treating infrastructure work — backups, monitoring, access control — as the thing you do once and then forget about. That's a comfortable way to think right up until it isn't.
+
+## The audit that changed my mind
+
+At one point I sat down and actually audited every backup I thought was running across every client system. The honest result: some were fine, some had silently stopped working weeks earlier with nobody noticing, and one piece of infrastructure handling real financial data had never had a backup set up for it at all. Nothing had gone wrong yet. That's exactly the problem with gaps like this — they're invisible until the one day they're catastrophic.
+
+That audit became a recurring habit instead of a one-time fire drill.
+
+## What "boring, on purpose" actually looks like
+
+**Watchdogs that watch the watchdogs.** A health check that pings a service is only useful if something is also checking that the health check itself is still running. I've been burned by monitoring that quietly died without anyone noticing, which is worse than no monitoring — it gives false confidence.
+
+**Alerts that go to a real channel, immediately, not into a dashboard nobody checks.** If something fails at 3am, I want to know at 3am, not whenever I happen to open a dashboard.
+
+**Classify before automating.** Not everything that looks routine should be handed off blindly. I've learned to separate purely mechanical tasks (a database dump, a file sync) — which are safe to automate end-to-end — from tasks that look routine but actually need real judgment, which shouldn't be automated into a black box just because they happen often.
+
+**Treat access revocation as urgent, not eventual.** When someone's relationship with a project ends, their access should end that day. "I'll get to it this week" is how stale credentials pile up.
+
+## Why this is worth writing about
+
+None of this is clever. It's the opposite of clever — it's the stuff that, when done well, nobody ever notices, and when skipped, becomes the story everyone remembers. I'd rather be boring on purpose than interesting by accident.

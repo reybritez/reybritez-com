@@ -1,0 +1,27 @@
+---
+title: Mapping a Codebase Before You Touch It
+date: '2026-09-22'
+tags: ['Tooling', 'AI-Engineering']
+draft: false
+summary: Building a knowledge graph of a codebase before making changes to it, instead of grepping and hoping.
+---
+
+The slowest part of picking up someone else's codebase has never been reading syntax — it's building a mental map of how everything actually connects. Which module owns which data. What calls what. Which "obvious" change is actually going to ripple into three other modules you didn't know existed.
+
+For a while my process for this was the standard one: grep around, open files, follow imports by hand, take notes that go stale the moment the code changes again. It works, but it's slow, and the mental map lives in my head where nobody else can use it and I forget half of it by the next project.
+
+## What changed
+
+I started generating an actual knowledge graph of each codebase before diving in — nodes for modules, functions, and data models, edges for "calls," "imports," "defines." Instead of grepping for a symbol and hoping I find every usage, I can ask a direct question: what touches this model, what would break if I renamed this function, which modules are the real hubs everything else depends on.
+
+The "god nodes" turned out to be the most useful part — the handful of files or functions that an unusually large portion of the codebase depends on. Those are exactly the places where a careless change has the widest blast radius, and exactly the places that deserve the most caution before touching.
+
+## Where this actually paid off
+
+On more than one inherited codebase, the graph surfaced a connection I would have missed with plain text search — two modules that looked unrelated by name but shared a data dependency that wasn't obvious from either one's imports directly. Finding that before making a change, instead of after it broke something, is the entire point.
+
+It's also just a faster way to onboard onto a new project. Instead of a day of reading to build a rough mental model, I get a queryable one in minutes, and I can keep refining it as I actually work instead of starting from zero every time.
+
+## The honest caveat
+
+A graph is only as good as the questions you know to ask it. It doesn't replace judgment about whether a change is a good idea — it just makes the "what does this actually touch" question answerable in seconds instead of an afternoon of careful reading. For codebases I'm going to be in regularly, that trade has been worth it every time.
