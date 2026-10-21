@@ -85,6 +85,11 @@ module.exports = () => {
       ]
     },
     webpack: (config, options) => {
+      // pdfjs-dist (via react-pdf) lists "canvas" as an optional Node-side
+      // dependency it never needs in the browser bundle -- without this,
+      // webpack still tries to resolve it and fails since it's not built
+      // (see dependenciesMeta in package.json).
+      config.resolve.alias.canvas = false
       config.module.rules.push({
         test: /\.svg$/,
         use: ['@svgr/webpack'],

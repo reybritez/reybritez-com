@@ -14,6 +14,11 @@
   "engines": {
     "node": "24.x"
   },
+  "dependenciesMeta": {
+    "canvas@2.11.2": {
+      "built": false
+    }
+  },
   "dependencies": {
     "@next/bundle-analyzer": "14.1.4",
     "@next/third-parties": "^14.2.3",
@@ -21,13 +26,13 @@
     "@tailwindcss/typography": "^0.5.12",
     "@wojtekmaj/react-hooks": "^1.18.0",
     "autoprefixer": "^10.4.13",
-    "contentlayer2": "0.4.4",
+    "contentlayer2": "0.5.8",
     "esbuild": "0.20.2",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.2",
     "image-size": "1.0.0",
-    "next": "latest",
-    "next-contentlayer2": "0.4.4",
+    "next": "14.2.3",
+    "next-contentlayer2": "0.5.8",
     "next-themes": "^0.3.0",
     "pliny": "0.2.0",
     "postcss": "^8.4.24",
